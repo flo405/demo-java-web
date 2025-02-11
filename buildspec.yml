@@ -7,6 +7,9 @@ phases:
     commands:
       - echo Installing dependencies...
       - apt-get update && apt-get install -y maven
+      - curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "/home/admin/awscliv2.zip"
+      - unzip /home/admin/awscliv2.zip
+      - sudo /home/admin/aws/install
   pre_build:
     commands:
       - echo Logging into AWS...
